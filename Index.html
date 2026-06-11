@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ServiceHub – Find Trusted Service Professionals Near You</title>
+<meta name="description" content="ServiceHub connects homeowners with trusted, vetted service professionals. Book electricians, plumbers, cleaners, and more in your area.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#111827;
+  --orange:#F97316;
+  --orange-light:#FFF7ED;
+  --orange-dark:#EA6C00;
+  --bg:#fff;
+  --accent:#F3F4F6;
+  --accent2:#E5E7EB;
+  --text:#111827;
+  --text2:#6B7280;
+  --text3:#9CA3AF;
+  --border:#E5E7EB;
+  --radius:12px;
+  --radius-sm:8px;
+  --radius-lg:20px;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06);
+  --shadow-lg:0 4px 24px rgba(0,0,0,.12);
+  --nav-h:72px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;outline:none;font-family:'Inter',sans-serif}
+input,select,textarea{font-family:'Inter',sans-serif;outline:none}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:22px;font-weight:800;color:var(--primary)}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:15px;color:var(--text2);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.btn-ghost{padding:8px 18px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;color:var(--text);background:transparent;border:1.5px solid var(--border);transition:all .2s}
+.btn-ghost:hover{border-color:var(--text);background:var(--accent)}
+.btn-primary{padding:10px 22px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;color:#fff;background:var(--orange);border:none;transition:all .2s}
+.btn-primary:hover{background:var(--orange-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(249,115,22,.35)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.mobile-nav{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:20px 24px;flex-direction:column;gap:16px;z-index:99}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-size:15px;font-weight:500;color:var(--text2);padding:8px 0;border-bottom:1px solid var(--border)}
+
+/* ===== HERO ===== */
+.hero{margin-top:var(--nav-h);min-height:calc(100vh - var(--nav-h));background:linear-gradient(135deg,#FFF7ED 0%,#fff 55%,#F0F9FF 100%);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;max-width:1200px;margin-left:auto;margin-right:auto;padding:60px 24px;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 600px 400px at 70% 50%,rgba(249,115,22,.07),transparent);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange-light);border:1px solid rgba(249,115,22,.2);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:600;color:var(--orange);margin-bottom:20px}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 1.8s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero h1{font-size:clamp(38px,5vw,62px);font-weight:800;line-height:1.12;letter-spacing:-.02em;color:var(--primary);margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero-sub{font-size:18px;color:var(--text2);line-height:1.65;margin-bottom:36px;max-width:480px}
+.search-box{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:8px;display:flex;align-items:center;gap:0;box-shadow:var(--shadow-lg);margin-bottom:28px}
+.search-field{display:flex;align-items:center;gap:10px;padding:8px 16px;flex:1;border-right:1px solid var(--border)}
+.search-field:last-of-type{border-right:none}
+.search-field svg{flex-shrink:0;color:var(--text3)}
+.search-field input,.search-field select{border:none;font-size:14px;color:var(--text);background:transparent;width:100%;font-weight:500}
+.search-field input::placeholder{color:var(--text3)}
+.search-field select{color:var(--text2)}
+.search-btn{padding:14px 28px;background:var(--orange);color:#fff;border-radius:var(--radius-sm);font-weight:700;font-size:15px;border:none;cursor:pointer;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:8px}
+.search-btn:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.hero-stats{display:flex;gap:32px}
+.hero-stat{display:flex;flex-direction:column}
+.hero-stat strong{font-size:26px;font-weight:800;color:var(--primary)}
+.hero-stat span{font-size:13px;color:var(--text2);font-weight:500}
+.hero-image-wrap{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-img-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);position:relative;width:100%;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#F3F4F6,#E5E7EB)}
+.hero-img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius-lg)}
+.hero-worker-icon{width:120px;height:120px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.hero-worker-icon svg{color:#fff;width:64px;height:64px}
+.hero-float-card{position:absolute;background:#fff;border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:12px;font-size:13px}
+.hero-float-card.top{top:10%;right:-5%}
+.hero-float-card.bottom{bottom:15%;left:-8%}
+.float-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.float-icon.orange{background:var(--orange-light)}
+.float-icon.green{background:#F0FDF4}
+.float-card-text strong{display:block;font-weight:700;font-size:14px}
+.float-card-text span{color:var(--text2);font-size:12px}
+
+/* ===== SECTIONS COMMON ===== */
+section{padding:80px 24px}
+.container{max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:56px}
+.section-tag{display:inline-block;background:var(--orange-light);color:var(--orange);font-size:12px;font-weight:700;padding:5px 14px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.section-header h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--primary);margin-bottom:14px}
+.section-header p{font-size:17px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.65}
+
+/* ===== TRUST BAR ===== */
+.trust-bar{background:var(--primary);padding:20px 24px}
+.trust-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);font-size:14px;font-weight:500}
+.trust-item svg{color:var(--orange);flex-shrink:0}
+
+/* ===== CATEGORIES ===== */
+.categories{background:#fff}
+.categories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:16px}
+.cat-card{background:var(--accent);border-radius:var(--radius);padding:24px 16px;text-align:center;cursor:pointer;transition:all .25s;border:1.5px solid transparent;display:flex;flex-direction:column;align-items:center;gap:12px}
+.cat-card:hover{background:#fff;border-color:var(--orange);transform:translateY(-4px);box-shadow:var(--shadow)}
+.cat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto;background:var(--orange-light);transition:all .25s}
+.cat-card:hover .cat-icon{background:var(--orange)}
+.cat-icon svg{width:26px;height:26px;color:var(--orange);transition:color .25s}
+.cat-card:hover .cat-icon svg{color:#fff}
+.cat-card h3{font-size:13px;font-weight:600;color:var(--text)}
+.cat-card span{font-size:11px;color:var(--text3)}
+
+/* ===== FEATURED PROS ===== */
+.pros{background:var(--accent)}
+.pros-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.pro-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);transition:all .3s;position:relative}
+.pro-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.pro-card-top{background:linear-gradient(135deg,var(--accent),var(--accent2));height:100px;position:relative;display:flex;align-items:flex-end;justify-content:center}
+.pro-avatar{width:80px;height:80px;border-radius:50%;border:4px solid #fff;overflow:hidden;position:absolute;bottom:-36px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.pro-badge{position:absolute;top:12px;right:12px;background:var(--orange);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px}
+.pro-card-body{padding:52px 20px 20px;text-align:center}
+.pro-name{font-size:17px;font-weight:700;margin-bottom:4px}
+.pro-role{font-size:13px;color:var(--text2);margin-bottom:12px}
+.pro-stars{display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:12px}
+.star{width:14px;height:14px;fill:var(--orange)}
+.pro-stars span{font-size:13px;font-weight:600;color:var(--text);margin-left:4px}
+.pro-stars em{font-style:normal;color:var(--text3);font-size:12px}
+.pro-meta{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:12px 0;font-size:13px}
+.pro-meta-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+.pro-meta-item span{color:var(--text3);font-size:11px}
+.pro-meta-item strong{font-weight:700;color:var(--text)}
+.btn-view{width:100%;padding:10px;background:var(--orange);color:#fff;border-radius:var(--radius-sm);font-weight:600;font-size:14px;transition:all .2s}
+.btn-view:hover{background:var(--orange-dark)}
+
+/* ===== POPULAR SERVICES ===== */
+.popular{background:#fff}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.service-card{border-radius:var(--radius-lg);overflow:hidden;border:1.5px solid var(--border);transition:all .3s;cursor:pointer}
+.service-card:hover{border-color:var(--orange);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.service-img{height:180px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.service-img-icon{width:70px;height:70px;background:#fff;border-radius:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.service-img-icon svg{width:36px;height:36px;color:var(--orange)}
+.service-img-badge{position:absolute;top:12px;left:12px;background:rgba(249,115,22,.15);color:var(--orange-dark);font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;backdrop-filter:blur(8px)}
+.service-body{padding:18px 20px}
+.service-title{font-size:17px;font-weight:700;margin-bottom:6px}
+.service-desc{font-size:13px;color:var(--text2);margin-bottom:14px;line-height:1.5}
+.service-footer{display:flex;align-items:center;justify-content:space-between}
+.service-price{font-size:14px;color:var(--text2)}
+.service-price strong{font-size:19px;font-weight:800;color:var(--primary);margin-right:2px}
+.btn-book{padding:8px 18px;background:var(--orange);color:#fff;border-radius:var(--radius-sm);font-size:13px;font-weight:600;transition:all .2s}
+.btn-book:hover{background:var(--orange-dark)}
+
+/* ===== HOW IT WORKS ===== */
+.how{background:var(--primary);color:#fff;padding:100px 24px}
+.how .section-tag{background:rgba(249,115,22,.2);color:var(--orange)}
+.how .section-header h2{color:#fff}
+.how .section-header p{color:rgba(255,255,255,.65)}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.steps-grid::before{content:'';position:absolute;top:36px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(249,115,22,.4),rgba(249,115,22,.4),transparent);z-index:0}
+.step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.step-num{width:72px;height:72px;border-radius:50%;background:rgba(249,115,22,.15);border:1.5px solid rgba(249,115,22,.35);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:20px;font-weight:800;color:var(--orange);transition:all .3s}
+.step:hover .step-num{background:var(--orange);color:#fff;border-color:var(--orange)}
+.step-icon{display:none}
+.step h3{font-size:17px;font-weight:700;margin-bottom:8px;color:#fff}
+.step p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.65}
+
+/* ===== REVIEWS ===== */
+.reviews{background:var(--accent)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+.review-card{background:#fff;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow);position:relative}
+.review-card::before{content:'"';position:absolute;top:16px;right:24px;font-size:80px;line-height:1;color:var(--orange-light);font-weight:800}
+.review-stars{display:flex;gap:3px;margin-bottom:16px}
+.review-text{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:20px}
+.reviewer{display:flex;align-items:center;gap:12px}
+.reviewer-avatar{width:44px;height:44px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
+.reviewer-name{font-size:15px;font-weight:700}
+.reviewer-meta{font-size:12px;color:var(--text3)}
+
+/* ===== TEAM ===== */
+.team{background:#fff}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px}
+.team-card{text-align:center;border-radius:var(--radius-lg);padding:28px 20px;border:1.5px solid var(--border);transition:all .3s}
+.team-card:hover{border-color:var(--orange);box-shadow:var(--shadow)}
+.team-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(135deg,var(--orange-light),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:var(--orange)}
+.team-name{font-size:17px;font-weight:700;margin-bottom:4px}
+.team-role{font-size:13px;color:var(--orange);font-weight:600;margin-bottom:6px}
+.team-exp{font-size:13px;color:var(--text2)}
+.team-socials{display:flex;justify-content:center;gap:8px;margin-top:14px}
+.team-social{width:32px;height:32px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;transition:background .2s}
+.team-social:hover{background:var(--orange-light)}
+.team-social svg{width:15px;height:15px;color:var(--text2)}
+
+/* ===== FAQ ===== */
+.faq{background:var(--accent)}
+.faq-wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.faq-item{background:#fff;border-radius:var(--radius);overflow:hidden;border:1.5px solid var(--border);transition:border-color .2s}
+.faq-item.open{border-color:var(--orange)}
+.faq-q{padding:20px 24px;font-size:16px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;user-select:none}
+.faq-q svg{flex-shrink:0;transition:transform .3s;color:var(--text2)}
+.faq-item.open .faq-q svg{transform:rotate(180deg);color:var(--orange)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s ease;font-size:15px;color:var(--text2);line-height:1.7;padding:0 24px}
+.faq-item.open .faq-a{max-height:300px;padding:0 24px 20px}
+
+/* ===== BLOG ===== */
+.blog{background:#fff}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.blog-card{border-radius:var(--radius-lg);overflow:hidden;border:1.5px solid var(--border);transition:all .3s;cursor:pointer}
+.blog-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--orange)}
+.blog-img{height:180px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;position:relative}
+.blog-img-num{font-size:64px;font-weight:800;color:var(--orange-light);opacity:.8}
+.blog-cat{position:absolute;top:12px;left:12px;background:var(--orange);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px}
+.blog-body{padding:20px}
+.blog-meta{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--text3);margin-bottom:10px}
+.blog-title{font-size:17px;font-weight:700;margin-bottom:8px;line-height:1.35}
+.blog-excerpt{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:16px}
+.blog-author{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+.blog-author-av{width:30px;height:30px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff}
+
+/* ===== NEWSLETTER ===== */
+.newsletter{background:var(--primary);padding:80px 24px;text-align:center}
+.newsletter h2{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;margin-bottom:14px}
+.newsletter p{color:rgba(255,255,255,.65);font-size:17px;margin-bottom:36px}
+.newsletter-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
+.newsletter-form input{flex:1;padding:14px 18px;border-radius:var(--radius-sm);border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.1);color:#fff;font-size:15px;transition:border-color .2s}
+.newsletter-form input::placeholder{color:rgba(255,255,255,.45)}
+.newsletter-form input:focus{border-color:var(--orange)}
+.newsletter-form button{padding:14px 28px;background:var(--orange);color:#fff;border-radius:var(--radius-sm);font-weight:700;font-size:15px;white-space:nowrap;transition:all .2s}
+.newsletter-form button:hover{background:var(--orange-dark)}
+
+/* ===== CONTACT ===== */
+.contact{background:var(--accent);padding:80px 24px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact-info h2{font-size:clamp(26px,3.5vw,38px);font-weight:800;margin-bottom:14px;line-height:1.2}
+.contact-info p{color:var(--text2);font-size:16px;margin-bottom:32px;line-height:1.65}
+.contact-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.contact-icon{width:48px;height:48px;border-radius:14px;background:var(--orange-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-icon svg{width:22px;height:22px;color:var(--orange)}
+.contact-item strong{display:block;font-size:15px;font-weight:700;margin-bottom:3px}
+.contact-item span{font-size:14px;color:var(--text2)}
+.contact-form{background:#fff;border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{margin-bottom:16px;display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:13px;font-weight:600;color:var(--text)}
+.form-group input,.form-group select,.form-group textarea{padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);transition:border-color .2s;resize:vertical}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--orange)}
+.form-group textarea{min-height:110px}
+.form-submit{width:100%;padding:14px;background:var(--orange);color:#fff;border-radius:var(--radius-sm);font-size:16px;font-weight:700;transition:all .2s}
+.form-submit:hover{background:var(--orange-dark);transform:translateY(-1px)}
+
+/* ===== MAP PLACEHOLDER ===== */
+.map-placeholder{height:220px;background:linear-gradient(135deg,#E0F2FE,#BAE6FD);border-radius:var(--radius);margin-top:28px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.map-placeholder::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.3) 0px,transparent 1px,transparent 40px),repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0px,transparent 1px,transparent 40px)}
+.map-pin{width:44px;height:44px;background:var(--orange);border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(249,115,22,.4)}
+.map-pin::after{content:'';width:16px;height:16px;background:#fff;border-radius:50%;position:absolute}
+
+/* ===== CTA SECTION (image-style gradient) ===== */
+.cta-join{background:linear-gradient(160deg,#b8c8f8 0%,#a5b8f5 25%,#9db0f0 50%,#b5c5f5 75%,#c8d5f8 100%);padding:100px 24px 180px;text-align:center;position:relative}
+.cta-join h2{font-size:clamp(32px,5vw,60px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:18px;letter-spacing:-.02em}
+.cta-join p{font-size:16px;color:rgba(255,255,255,.85);max-width:560px;margin:0 auto 36px;line-height:1.7}
+.cta-join-btn{display:inline-block;padding:16px 44px;background:#111827;color:#fff;border-radius:100px;font-size:16px;font-weight:700;cursor:pointer;border:none;transition:all .2s;letter-spacing:-.01em}
+.cta-join-btn:hover{background:#1f2937;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+
+/* ===== FOOTER (white card floating over gradient) ===== */
+footer{background:#f0f2f8;padding:0 24px 0}
+.footer-card{max-width:1160px;margin:-120px auto 0;background:#fff;border-radius:24px;padding:48px 48px 40px;box-shadow:0 8px 40px rgba(0,0,0,.10);position:relative;z-index:2}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1.2fr 1.2fr 1.2fr 1.4fr;gap:32px;margin-bottom:40px}
+.footer-brand .footer-logo{font-size:20px;font-weight:800;color:var(--primary);margin-bottom:10px}
+.footer-brand .footer-logo span{color:var(--orange)}
+.footer-desc{font-size:13px;line-height:1.7;color:var(--text2);max-width:200px}
+.footer-col h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:18px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-col li a{font-size:13px;color:var(--text2);transition:color .2s}
+.footer-col li a:hover{color:var(--orange)}
+.footer-app-col h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:18px}
+.footer-app-badges{display:flex;flex-direction:column;gap:12px}
+.footer-app-badges a{display:block;transition:transform .2s,opacity .2s}
+.footer-app-badges a:hover{transform:translateY(-2px);opacity:.85}
+.footer-app-badges img{width:150px;height:auto;border-radius:8px}
+.footer-bottom-strip{background:#f0f2f8;padding:20px 24px}
+.footer-bottom-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-bottom-inner p{font-size:13px;color:var(--text2)}
+.footer-socials{display:flex;gap:14px;align-items:center}
+.footer-socials a{width:38px;height:38px;border-radius:50%;background:#111827;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+.footer-socials a:hover{background:var(--orange);transform:translateY(-2px)}
+.footer-socials img{width:18px;height:18px;filter:brightness(0) invert(1)}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ===== BACK TO TOP ===== */
+#back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--orange);border-radius:50%;display:none;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(249,115,22,.4);z-index:50;transition:all .3s}
+#back-top.show{display:flex}
+#back-top:hover{transform:translateY(-3px)}
+#back-top svg{color:#fff;width:20px;height:20px}
+
+/* ===== MOBILE ===== */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center;padding:40px 24px}
+  .hero-image-wrap{display:none}
+  .hero-stats{justify-content:center}
+  .search-box{flex-direction:column;gap:4px;padding:12px}
+  .search-field{border-right:none;border-bottom:1px solid var(--border);padding:10px 12px}
+  .search-field:last-of-type{border-bottom:none}
+  .search-btn{width:100%;justify-content:center}
+  .steps-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .steps-grid::before{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1/-1}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .nav-hamburger{display:flex}
+  section{padding:60px 20px}
+  .steps-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .newsletter-form{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Service<span>Hub</span></a>
+    <div class="nav-links">
+      <a href="#categories">Services</a>
+      <a href="#professionals">Professionals</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn-ghost">Log in</button>
+      <button class="btn-primary">Get Started</button>
+    </div>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#categories">Services</a>
+  <a href="#professionals">Professionals</a>
+  <a href="#how-it-works">How it works</a>
+  <a href="#blog">Blog</a>
+  <a href="#contact">Contact</a>
+  <button class="btn-primary" style="margin-top:8px">Get Started</button>
+</div>
+
+<!-- HERO -->
+<section class="hero" style="margin-top:var(--nav-h);padding-top:60px" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+      Rated #1 Home Services Marketplace
+    </div>
+    <h1>Find Trusted<br>Service <em>Professionals</em><br>Near You</h1>
+    <p class="hero-sub">From quick repairs to full renovations — find pre-vetted professionals ready to handle any home project, fast.</p>
+    <div class="search-box">
+      <div class="search-field">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <input type="text" placeholder="Enter your location">
+      </div>
+      <div class="search-field">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        <select>
+          <option value="">Select service</option>
+          <option>Electrician</option>
+          <option>Plumber</option>
+          <option>Carpenter</option>
+          <option>Painter</option>
+          <option>AC Repair</option>
+          <option>Cleaning</option>
+          <option>Pest Control</option>
+          <option>Appliance Repair</option>
+          <option>Home Renovation</option>
+          <option>Roofing</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <select>
+          <option value="">Budget range</option>
+          <option>Under ₹500</option>
+          <option>₹500 – ₹2,000</option>
+          <option>₹2,000 – ₹5,000</option>
+          <option>₹5,000+</option>
+        </select>
+      </div>
+      <button class="search-btn">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Search
+      </button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>50K+</strong><span>Verified Pros</span></div>
+      <div class="hero-stat"><strong>2M+</strong><span>Jobs Completed</span></div>
+      <div class="hero-stat"><strong>4.9★</strong><span>Average Rating</span></div>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <div class="hero-img-card">
+      <div class="hero-img-placeholder">
+        <div class="hero-worker-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg>
+        </div>
+        <span style="font-size:16px;font-weight:700;color:#4B5563">Professional Service Experts</span>
+        <span style="font-size:13px;color:#9CA3AF">Trusted & Verified Professionals</span>
+      </div>
+      <div class="hero-float-card top">
+        <div class="float-icon orange">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="float-card-text"><strong>Booking Confirmed!</strong><span>Your pro is on the way</span></div>
+      </div>
+      <div class="hero-float-card bottom">
+        <div class="float-icon green">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+        </div>
+        <div class="float-card-text"><strong>4.9/5.0</strong><span>12,400+ reviews</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+      Background Verified Pros
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
+      Secure Payments
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+      24/7 Support
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/></svg>
+      ServiceHub Guarantee
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+      4.9 Average Rating
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">All Services</div>
+      <h2>What can we help you with?</h2>
+      <p>Browse our wide range of home service categories and find the right professional for every job.</p>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
+        <h3>Electrician</h3><span>124 pros</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg></div>
+        <h3>Plumber</h3><span>87 pros</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-2">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg></div>
+        <h3>Carpenter</h3><span>63 pros</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-3">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/></svg></div>
+        <h3>Painter</h3><span>95 pros</span>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636"/></svg></div>
+        <h3>AC Repair</h3><span>142 pros</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
+        <h3>Cleaning</h3><span>210 pros</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-2">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg></div>
+        <h3>Pest Control</h3><span>58 pros</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-3">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"/></svg></div>
+        <h3>Appliance Repair</h3><span>76 pros</span>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg></div>
+        <h3>Home Renovation</h3><span>45 pros</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg></div>
+        <h3>Roofing</h3><span>39 pros</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROFESSIONALS -->
+<section class="pros" id="professionals">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Top Rated</div>
+      <h2>Featured Professionals</h2>
+      <p>Handpicked experts with exceptional ratings, verified credentials, and years of proven experience.</p>
+    </div>
+    <div class="pros-grid">
+      <div class="pro-card reveal">
+        <div class="pro-card-top">
+          <div class="pro-avatar">RK</div>
+          <div class="pro-badge">Top Pro</div>
+        </div>
+        <div class="pro-card-body">
+          <div class="pro-name">Rajesh Kumar</div>
+          <div class="pro-role">Master Electrician</div>
+          <div class="pro-stars">
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <span>5.0 <em>(284 reviews)</em></span>
+          </div>
+          <div class="pro-meta">
+            <div class="pro-meta-item"><strong>12 yrs</strong><span>Experience</span></div>
+            <div class="pro-meta-item"><strong>₹350</strong><span>From / hr</span></div>
+            <div class="pro-meta-item"><strong>Jaipur</strong><span>Location</span></div>
+          </div>
+          <button class="btn-view">View Profile</button>
+        </div>
+      </div>
+      <div class="pro-card reveal reveal-delay-1">
+        <div class="pro-card-top">
+          <div class="pro-avatar">PS</div>
+          <div class="pro-badge">Verified</div>
+        </div>
+        <div class="pro-card-body">
+          <div class="pro-name">Priya Sharma</div>
+          <div class="pro-role">Interior Designer</div>
+          <div class="pro-stars">
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" style="fill:#E5E7EB"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <span>4.8 <em>(196 reviews)</em></span>
+          </div>
+          <div class="pro-meta">
+            <div class="pro-meta-item"><strong>8 yrs</strong><span>Experience</span></div>
+            <div class="pro-meta-item"><strong>₹500</strong><span>From / hr</span></div>
+            <div class="pro-meta-item"><strong>Delhi</strong><span>Location</span></div>
+          </div>
+          <button class="btn-view">View Profile</button>
+        </div>
+      </div>
+      <div class="pro-card reveal reveal-delay-2">
+        <div class="pro-card-top">
+          <div class="pro-avatar">AV</div>
+          <div class="pro-badge">Top Pro</div>
+        </div>
+        <div class="pro-card-body">
+          <div class="pro-name">Arjun Verma</div>
+          <div class="pro-role">Plumbing Expert</div>
+          <div class="pro-stars">
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <span>4.9 <em>(341 reviews)</em></span>
+          </div>
+          <div class="pro-meta">
+            <div class="pro-meta-item"><strong>15 yrs</strong><span>Experience</span></div>
+            <div class="pro-meta-item"><strong>₹400</strong><span>From / hr</span></div>
+            <div class="pro-meta-item"><strong>Mumbai</strong><span>Location</span></div>
+          </div>
+          <button class="btn-view">View Profile</button>
+        </div>
+      </div>
+      <div class="pro-card reveal reveal-delay-3">
+        <div class="pro-card-top">
+          <div class="pro-avatar">NP</div>
+          <div class="pro-badge">Verified</div>
+        </div>
+        <div class="pro-card-body">
+          <div class="pro-name">Neha Patel</div>
+          <div class="pro-role">Deep Clean Specialist</div>
+          <div class="pro-stars">
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <span>5.0 <em>(178 reviews)</em></span>
+          </div>
+          <div class="pro-meta">
+            <div class="pro-meta-item"><strong>6 yrs</strong><span>Experience</span></div>
+            <div class="pro-meta-item"><strong>₹299</strong><span>From / hr</span></div>
+            <div class="pro-meta-item"><strong>Bangalore</strong><span>Location</span></div>
+          </div>
+          <button class="btn-view">View Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR SERVICES -->
+<section class="popular" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Most Booked</div>
+      <h2>Popular Services</h2>
+      <p>The services our customers book most — all at transparent, upfront pricing.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-img">
+          <div class="service-img-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
+          <div class="service-img-badge">⚡ Same Day</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title">Electrical Wiring & Repair</div>
+          <div class="service-desc">Full home rewiring, panel upgrades, outlet installation, and emergency repairs by licensed electricians.</div>
+          <div class="service-footer">
+            <div class="service-price"><strong>₹350</strong>/ hr onwards</div>
+            <button class="btn-book">Quick Book</button>
+          </div>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-img">
+          <div class="service-img-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
+          <div class="service-img-badge">🏆 Top Rated</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title">Deep Home Cleaning</div>
+          <div class="service-desc">Thorough top-to-bottom cleaning including kitchen, bathrooms, bedrooms, and living areas. Eco-friendly products.</div>
+          <div class="service-footer">
+            <div class="service-price"><strong>₹799</strong>/ session</div>
+            <button class="btn-book">Quick Book</button>
+          </div>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-img">
+          <div class="service-img-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636"/></svg></div>
+          <div class="service-img-badge">❄️ AC Special</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title">AC Service & Repair</div>
+          <div class="service-desc">Annual maintenance, gas refill, filter cleaning, cooling issues, and installation of all major AC brands.</div>
+          <div class="service-footer">
+            <div class="service-price"><strong>₹499</strong>/ service</div>
+            <button class="btn-book">Quick Book</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Simple Process</div>
+      <h2>How ServiceHub Works</h2>
+      <p>Book a trusted professional in minutes — it's that straightforward.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3>Search a Service</h3>
+        <p>Tell us what you need and where you are. Our smart matching surfaces the best available pros.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">2</div>
+        <h3>Compare Professionals</h3>
+        <p>Browse profiles, ratings, pricing, and reviews. Every pro is background-checked and vetted.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">3</div>
+        <h3>Book Instantly</h3>
+        <p>Pick your time slot and confirm. Pay securely online — no hidden charges, ever.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">4</div>
+        <h3>Get Work Done</h3>
+        <p>Your pro arrives on time. Rate and review when done. We guarantee the work quality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Customer Stories</div>
+      <h2>What our customers say</h2>
+      <p>Join 2 million+ happy homeowners who trust ServiceHub every day.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        </div>
+        <p class="review-text">Booked an electrician at 9am and he was at my door by noon. Fixed the wiring issue in under an hour. Transparent pricing, no surprises. Will absolutely use ServiceHub again.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SA</div>
+          <div>
+            <div class="reviewer-name">Sanjay Agarwal</div>
+            <div class="reviewer-meta">Homeowner, Jaipur • Electrical Service</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        </div>
+        <p class="review-text">The deep cleaning team transformed my apartment. They were thorough, professional, and left everything spotless. The booking process took 3 minutes. Truly impressed.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:#7C3AED">MG</div>
+          <div>
+            <div class="reviewer-name">Meera Gupta</div>
+            <div class="reviewer-meta">Tenant, Bangalore • Home Cleaning</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:var(--orange)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;fill:#E5E7EB"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        </div>
+        <p class="review-text">As a landlord managing multiple properties, ServiceHub has saved me countless hours. Reliable pros, fair pricing, and excellent communication throughout every job.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:#059669">VR</div>
+          <div>
+            <div class="reviewer-name">Vikram Rao</div>
+            <div class="reviewer-meta">Property Owner, Hyderabad • Multiple Services</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERT TEAM -->
+<section class="team" id="team">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Our Team</div>
+      <h2>The People Behind ServiceHub</h2>
+      <p>A dedicated team committed to connecting homeowners with the best professionals.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar">AK</div>
+        <div class="team-name">Aarav Khanna</div>
+        <div class="team-role">CEO & Co-founder</div>
+        <div class="team-exp">12 years in marketplace tech</div>
+        <div class="team-socials">
+          <a class="team-social" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+          <a class="team-social" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.28 4.28 0 004 2.98 8.521 8.521 0 01-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg></a>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar" style="color:#7C3AED;background:linear-gradient(135deg,#EDE9FE,#DDD6FE)">SR</div>
+        <div class="team-name">Shreya Rathi</div>
+        <div class="team-role">CTO</div>
+        <div class="team-exp">10 years full-stack engineering</div>
+        <div class="team-socials">
+          <a class="team-social" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+          <a class="team-social" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar" style="color:#059669;background:linear-gradient(135deg,#ECFDF5,#D1FAE5)">DM</div>
+        <div class="team-name">Dev Mehta</div>
+        <div class="team-role">Head of Operations</div>
+        <div class="team-exp">8 years in marketplace ops</div>
+        <div class="team-socials">
+          <a class="team-social" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+          <a class="team-social" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.28 4.28 0 004 2.98 8.521 8.521 0 01-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg></a>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-avatar" style="color:#DC2626;background:linear-gradient(135deg,#FEF2F2,#FECACA)">RJ</div>
+        <div class="team-name">Riya Joshi</div>
+        <div class="team-role">Customer Experience Lead</div>
+        <div class="team-exp">7 years customer success</div>
+        <div class="team-socials">
+          <a class="team-social" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+          <a class="team-social" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.28 4.28 0 004 2.98 8.521 8.521 0 01-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">FAQ</div>
+      <h2>Got questions? We've got answers.</h2>
+      <p>Everything you need to know about booking services on ServiceHub.</p>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item open reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How does ServiceHub verify its professionals?
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </div>
+        <div class="faq-a">Every professional on ServiceHub goes through a rigorous verification process: government ID check, background verification, skill assessment, and reference review. We re-verify all pros annually, and your rating and review after every job helps keep our standards high.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What is the ServiceHub Guarantee?
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </div>
+        <div class="faq-a">If you're not satisfied with any service booked through our platform, we'll arrange a re-do at no extra cost or offer a full refund — no questions asked. Our guarantee covers all bookings made and paid through ServiceHub.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How is pricing determined?
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </div>
+        <div class="faq-a">All pricing is shown upfront before you confirm a booking. Professionals set their own rates, which you can compare side-by-side. There are no hidden platform fees for customers — the price you see is the price you pay.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-3">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Can I cancel or reschedule a booking?
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </div>
+        <div class="faq-a">Yes, you can cancel or reschedule up to 2 hours before your appointment for a full refund. Cancellations within 2 hours may incur a small fee to compensate the professional for reserved time.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How do I become a service professional on ServiceHub?
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </div>
+        <div class="faq-a">Click "Get Started" and choose "Join as a Professional." You'll complete your profile, submit your documents for verification, and set your service areas and pricing. Most applications are reviewed within 48 hours. There's no joining fee — we only earn a small commission when you complete a job.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Home Tips</div>
+      <h2>From the ServiceHub Blog</h2>
+      <p>Expert guides, maintenance tips, and cost breakdowns to help you make the best home decisions.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card reveal">
+        <div class="blog-img">
+          <div class="blog-img-num">01</div>
+          <div class="blog-cat">Electrical</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span>June 2, 2026</span>
+            <span>•</span>
+            <span>5 min read</span>
+          </div>
+          <div class="blog-title">Signs Your Home's Wiring Needs an Urgent Upgrade</div>
+          <div class="blog-excerpt">Flickering lights and tripped breakers aren't just nuisances — they can signal serious fire risks. Here's what to watch for.</div>
+          <div class="blog-author"><div class="blog-author-av">RK</div> Rajesh Kumar, Master Electrician</div>
+        </div>
+      </div>
+      <div class="blog-card reveal reveal-delay-1">
+        <div class="blog-img" style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE)">
+          <div class="blog-img-num" style="color:#BFDBFE">02</div>
+          <div class="blog-cat" style="background:#3B82F6">Plumbing</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span>May 28, 2026</span>
+            <span>•</span>
+            <span>4 min read</span>
+          </div>
+          <div class="blog-title">Water Heater Flush: Should You DIY or Call a Pro?</div>
+          <div class="blog-excerpt">Annual flushes extend your water heater's life by years. We break down what's safe to do yourself and when to call in help.</div>
+          <div class="blog-author"><div class="blog-author-av" style="background:#3B82F6">AV</div> Arjun Verma, Plumbing Expert</div>
+        </div>
+      </div>
+      <div class="blog-card reveal reveal-delay-2">
+        <div class="blog-img" style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7)">
+          <div class="blog-img-num" style="color:#BBF7D0">03</div>
+          <div class="blog-cat" style="background:#22C55E">Cleaning</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span>May 20, 2026</span>
+            <span>•</span>
+            <span>6 min read</span>
+          </div>
+          <div class="blog-title">The Pre-Monsoon Deep Clean Checklist Every Homeowner Needs</div>
+          <div class="blog-excerpt">Before the rains hit, there are 12 areas of your home that need attention. We've put the complete checklist together for you.</div>
+          <div class="blog-author"><div class="blog-author-av" style="background:#22C55E">NP</div> Neha Patel, Cleaning Specialist</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <div class="container">
+    <div class="section-tag" style="background:rgba(249,115,22,.2);color:var(--orange)">Stay Updated</div>
+    <h2 style="margin-top:12px">Home care tips, delivered free</h2>
+    <p>Join 180,000+ homeowners getting seasonal maintenance reminders and exclusive service deals.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address">
+      <button>Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-tag">Get in Touch</div>
+        <h2 style="margin-top:14px">We're here to help, always</h2>
+        <p>Have a question, need support, or want to partner with us? Our team responds within one business hour.</p>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+          </div>
+          <div>
+            <strong>Phone Support</strong>
+            <span>+91 98765 43210 · Mon–Sat, 8am – 8pm</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          </div>
+          <div>
+            <strong>Email Us</strong>
+            <span>support@servicehub.in</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          </div>
+          <div>
+            <strong>Head Office</strong>
+            <span>Level 4, Sangam Tower, MI Road, Jaipur, Rajasthan 302001</span>
+          </div>
+        </div>
+        <div class="map-placeholder">
+          <div class="map-pin"></div>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-2">
+        <h3 style="font-size:20px;font-weight:800;margin-bottom:24px">Send us a message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First name</label>
+            <input type="text" placeholder="Aarav">
+          </div>
+          <div class="form-group">
+            <label>Last name</label>
+            <input type="text" placeholder="Khanna">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label>Phone number</label>
+          <input type="tel" placeholder="+91 00000 00000">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select>
+            <option value="">Select a subject</option>
+            <option>Service enquiry</option>
+            <option>Booking issue</option>
+            <option>Join as a professional</option>
+            <option>Partnership</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us how we can help you..."></textarea>
+        </div>
+        <button class="form-submit">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">Service<span>Hub</span></div>
+      <p class="footer-desc">India's most trusted marketplace for home service professionals. Vetted, insured, and rated by your neighbours.</p>
+      <div class="footer-social">
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.28 4.28 0 004 2.98 8.521 8.521 0 01-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 011.25 1.25A1.25 1.25 0 0117.25 8 1.25 1.25 0 0116 6.75a1.25 1.25 0 011.25-1.25M12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5m0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Electrician</a></li>
+        <li><a href="#">Plumber</a></li>
+        <li><a href="#">Carpenter</a></li>
+        <li><a href="#">Painter</a></li>
+        <li><a href="#">AC Repair</a></li>
+        <li><a href="#">Deep Cleaning</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Partners</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help Centre</a></li>
+        <li><a href="#">Safety</a></li>
+        <li><a href="#">Become a Pro</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ServiceHub Technologies Pvt. Ltd. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Cookies</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/></svg>
+</div>
+
+<script>
+function toggleMenu(){
+  const n=document.getElementById('mobile-nav');
+  n.classList.toggle('open');
+}
+function toggleFaq(el){
+  const item=el.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+// Nav scroll effect
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  nav.style.boxShadow=window.scrollY>40?'0 2px 20px rgba(0,0,0,.09)':'none';
+  const bt=document.getElementById('back-top');
+  bt.classList.toggle('show',window.scrollY>400);
+});
+// Close mobile nav on link click
+document.querySelectorAll('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>{
+  document.getElementById('mobile-nav').classList.remove('open');
+}));
+</script>
+</body>
+</html>
